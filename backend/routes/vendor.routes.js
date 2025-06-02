@@ -1,5 +1,6 @@
 import { Router } from "express";
 import axios from "axios";
+import { HOST } from "../config/env.js";
 
 const vendorRouter = Router();
 
@@ -9,7 +10,7 @@ vendorRouter.post('/send', async (req, res) => {
     const isSuccess = Math.random() < 0.9;
     const status = isSuccess ? 'SENT' : 'FAILED';
     // Call delivery receipt endpoint
-    await axios.post('http://localhost:3000/api/v1/receipt', {
+    await axios.post(`${HOST}/api/v1/receipt`, {
         logId,
         status
     });

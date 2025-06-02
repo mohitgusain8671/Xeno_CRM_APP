@@ -1,3 +1,4 @@
+import { HOST } from '../config/env.js';
 import { subscriber } from '../config/redis.js';
 import { buildQueryFromConditions } from '../helper/campaign.helper.js';
 import Campaign from '../models/campaign.model.js';
@@ -34,7 +35,7 @@ export const startCampaignWorker = async () => {
         logs.push(log);
 
         // Simulate vendor API call
-        await axios.post('http://localhost:3000/api/v1/vendor/send', {
+        await axios.post(`${HOST}/api/v1/vendor/send`, {
               logId: log._id,
               customerId: customer._id,
               message: personalizedMessage

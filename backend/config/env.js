@@ -7,5 +7,5 @@ export const {
     DB_URI,
     CLIENT_ID, CLIENT_SECRET, REDIRECT_URI,
     JWT_SECRET, ORIGIN,
-    REDIS_URL
+    REDIS_URL, HOST
 } = process.env
