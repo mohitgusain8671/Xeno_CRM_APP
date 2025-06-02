@@ -13,7 +13,7 @@ export const googleAuthCallback = (req, res) => {
     res.cookie("token", token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production", 
-        sameSite: "Strict",
+        sameSite: "none",
         maxAge: 24 * 60 * 60 * 1000, // 1 day
     });
     res.redirect(ORIGIN);
@@ -23,7 +23,7 @@ export const logout = (req, res) => {
     res.clearCookie("token", {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
-        sameSite: "Strict",
+        sameSite: "none",
     });
     res.status(200).json({ message: "Logged out successfully" });
 }
