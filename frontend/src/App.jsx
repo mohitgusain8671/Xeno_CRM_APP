@@ -28,18 +28,11 @@ const AuthRoute = ({ children }) => {
 }
 
 function App() {
-  const { fetchUserInfo, userInfo } = useAppStore();
-  useEffect(()=>{
-    const fetchUser = async () => {
-      try {
-        await fetchUserInfo();
-      } catch (error) {
-        console.error('Error fetching user info:', error);
-      }
-    }
-    fetchUser();
-    
-  },[]);
+  const fetchUserInfo = useAppStore(state => state.fetchUserInfo);
+
+  useEffect(() => {
+    fetchUserInfo();
+  }, []);
   return (
     <>
         <div className="flex flex-col min-h-screen">
