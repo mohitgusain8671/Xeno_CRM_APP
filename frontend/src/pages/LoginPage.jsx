@@ -8,7 +8,6 @@ const LoginPage = () => {
 
   const handleGoogleSignIn = async () => {
     const url = `${HOST.replace(/\/$/, '')}/${GOOGLE_AUTH.replace(/^\//, '')}`;
-    console.log(url);
     window.location.href = url;
   };
 

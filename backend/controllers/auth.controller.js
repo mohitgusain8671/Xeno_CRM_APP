@@ -11,9 +11,6 @@ export const googleAuth = passport.authenticate("google", {
 export const googleAuthCallback = (req, res) => {
     const token = generateToken(req.user);
     res.cookie("token", token, {
-        httpOnly: true,
-        secure: true,
-        sameSite: 'none',
         maxAge: 24 * 60 * 60 * 1000, // 1 day
     });
     res.redirect(ORIGIN);
@@ -21,9 +18,6 @@ export const googleAuthCallback = (req, res) => {
 
 export const logout = (req, res) => {
     res.clearCookie("token", {
-        httpOnly: true,
-        secure: true,
-        sameSite: 'none',
     });
     res.status(200).json({ message: "Logged out successfully" });
 }

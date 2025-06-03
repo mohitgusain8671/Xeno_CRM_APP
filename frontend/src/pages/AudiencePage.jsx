@@ -11,7 +11,6 @@ const AudiencePage = () => {
 
   const handleAudienceSubmit = (data) => {
     setAudienceData(data);
-    console.log("Audience Data Submitted:", data);
     setCurrentPage('campaign');
   };
 

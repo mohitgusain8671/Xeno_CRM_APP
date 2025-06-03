@@ -5,7 +5,7 @@ import { DELETE_CAMPAIGN, INITIATE_CAMPAIGN } from '../utils/constants';
 import { apiClient } from '../lib/api-client';
 
 const CampaignCard = ({ campaign, isOwner = false }) => {
-  console.log("Campaign Card Rendered", campaign);
+
   const getStatusColor = (status) => {
     switch (status) {
       case 'active': return 'bg-green-500/20 text-green-400 border-green-500/30';
