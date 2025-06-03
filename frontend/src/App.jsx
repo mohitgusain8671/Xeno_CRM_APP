@@ -14,7 +14,7 @@ import { useEffect } from 'react';
 
 const ProtectedRoute = ({ children }) => {
   // Placeholder for authentication logic
-  const { isAuthenticated, authLoading } = useAppStore(); // Replace with actual authentication check
+  const { isAuthenticated, authLoading } = useAppStore();
   if (authLoading) {
     return <div className="text-white p-4">Loading...</div>; // Or a spinner
   }
@@ -22,7 +22,7 @@ const ProtectedRoute = ({ children }) => {
 };
 
 const AuthRoute = ({ children }) => {
-  const { isAuthenticated } = useAppStore(); // Replace with actual authentication check
+  const { isAuthenticated } = useAppStore(); 
 
   return !isAuthenticated ? children : <Navigate to="/" />;
 }

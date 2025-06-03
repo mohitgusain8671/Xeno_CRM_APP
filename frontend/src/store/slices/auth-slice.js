@@ -14,10 +14,12 @@ export const createAuthSlice = (set, get) => ({
             })
             if(res.status === 200) {
                 set({ userInfo: res.data.user, isAuthenticated: true, authLoading: false });
+            } else {
+                set({ userInfo: null, isAuthenticated: false, authLoading: false });
             }
         } catch (error) {
             console.error('Error fetching user info:', error);
-            set({ userInfo: null, isAuthenticated: false });
+            set({ userInfo: null, isAuthenticated: false, authLoading: false });
         }
     },
     logout: async () =>{
