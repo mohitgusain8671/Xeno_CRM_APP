@@ -83,7 +83,7 @@ npm install
 cp .env
 ```
 
-4. **Configure environment variables** (see Backend Environment Configuration below)
+4. **Configure environment variables** (see Backend Environment Configuration below and also setup Google Oauth 2.0)
 
 5. **Start the backend server**
 ```bash
@@ -131,7 +131,7 @@ PORT=3000
 NODE_ENV='development'
 
 # Database Configuration
-MONGODB_URI=mongodb://localhost:27017/campaign_craft
+DB_URI=mongodb://localhost:27017/campaign_craft
 # OR for MongoDB Atlas
 # MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/campaign_craft
 
