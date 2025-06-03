@@ -11,7 +11,7 @@ export const googleAuth = passport.authenticate("google", {
 export const googleAuthCallback = (req, res) => {
     const token = generateToken(req.user);
     res.cookie("token", token, {
-         httpOnly: true,
+        httpOnly: true,
         secure: true,
         maxAge: 24 * 60 * 60 * 1000, // 1 day
     });

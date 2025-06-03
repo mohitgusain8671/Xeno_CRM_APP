@@ -3,8 +3,12 @@ import React from 'react';
 import { Edit2, Trash2, Activity, Users, Calendar, Filter } from 'lucide-react';
 import { DELETE_CAMPAIGN, INITIATE_CAMPAIGN } from '../utils/constants';
 import { apiClient } from '../lib/api-client';
+import { toast } from 'react-toastify';
 
 const CampaignCard = ({ campaign, isOwner = false }) => {
+
+  const [summary, setSummary] = React.useState(null);
+  const [loading, setLoading] = React.useState(false);
 
   const getStatusColor = (status) => {
     switch (status) {
@@ -16,6 +20,16 @@ const CampaignCard = ({ campaign, isOwner = false }) => {
   };
 
   const generateAISummary = async (campaign) => {
+    try {
+      setLoading(true);
+      const response = await apiClient.post('/api/v1/summary', { campaign }, { withCredentials: true });
+      setSummary(response.data.summary);
+    } catch (error) {
+      console.error('Error generating AI summary:', error);
+      toast.error("Failed to generate AI summary. Please try again later.");
+    } finally {
+      setLoading(false);
+    }
 
   }
   const onEdit = (campaign) => {
@@ -176,11 +190,22 @@ const CampaignCard = ({ campaign, isOwner = false }) => {
         isOwner && (
           <button
             onClick={() => generateAISummary(campaign)}
-            className="mt-4 w-full bg-blue-600 hover:bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg transition-colors"
+            disabled={loading}
+            className={`mt-4 w-full font-semibold py-2 px-4 rounded-lg transition-colors ${
+              loading ? 'bg-blue-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-500'
+            } text-white`}
             title="Generate AI SUMMARY"
           >
-            Generate AI Summary
+            {loading ? 'Generating Summary...' : 'Generate AI Summary'}
           </button>
+        )
+      }
+      {
+        summary && (
+          <div className="mt-4 p-4 bg-gray-700 rounded-lg">
+            <h4 className="text-sm text-gray-400 mb-2">AI Summary</h4>
+            <p className="text-gray-200">{summary}</p>
+          </div>
         )
       }
     </div>

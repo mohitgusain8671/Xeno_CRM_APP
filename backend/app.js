@@ -16,7 +16,7 @@ import campaignRouter from './routes/campaign.routes.js';
 import vendorRouter from './routes/vendor.routes.js';
 import { deliveryReceipt } from './controllers/reciept.controller.js';
 import { startCampaignWorker } from './workers/campaign.worker.js';
-
+import { summarizeCampaign } from './controllers/summary.controller.js';
 const app = express();
 
 app.use(cors({
@@ -39,6 +39,7 @@ app.use('/api/v1/campaigns', campaignRouter);
 app.use('/api/v1/vendor', vendorRouter);
 
 app.post('/api/v1/receipt', deliveryReceipt);
+app.post('/api/v1/summary', summarizeCampaign);
 
 app.use(errorMiddleware);
 
