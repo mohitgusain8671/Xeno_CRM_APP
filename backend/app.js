@@ -19,13 +19,15 @@ import { startCampaignWorker } from './workers/campaign.worker.js';
 
 const app = express();
 
-app.use(cookieParser());
 app.use(cors({
   origin: [ORIGIN],
   methods: ['GET', 'POST', 'PUT', 'DELETE',"PATCH"],
   credentials: true,
 }))
+
+app.use(cookieParser());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(passport.initialize());
 app.set('trust proxy', 1);
 
