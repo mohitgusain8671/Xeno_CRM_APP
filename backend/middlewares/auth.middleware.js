@@ -4,8 +4,6 @@ import { JWT_SECRET } from '../config/env.js';
 const authorize = async (req, res, next) => {
     try {
         const token = req.cookies.token;
-        console.log("Token from cookies:", token);
-        console.log(req.cookies);
         // Check if token is valid
         if(!token) {
             return res.status(401).json({ message: "Unauthorized, no token provided" });
