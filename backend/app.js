@@ -27,6 +27,8 @@ app.use(cors({
 }))
 app.use(express.json());
 app.use(passport.initialize());
+app.set('trust proxy', 1);
+
 
 app.use('/api/v1/customer', customerRouter);
 app.use('/api/v1/orders', orderRouter);
