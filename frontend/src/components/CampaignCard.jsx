@@ -15,6 +15,9 @@ const CampaignCard = ({ campaign, isOwner = false }) => {
     }
   };
 
+  const generateAISummary = async (campaign) => {
+
+  }
   const onEdit = (campaign) => {
     toast.error("Edit functionality is coming soon!");
   }
@@ -74,7 +77,7 @@ const CampaignCard = ({ campaign, isOwner = false }) => {
   const activeConditions = getActiveConditions(campaign.conditions);
 
   return (
-    <div className="bg-gray-800 rounded-lg border border-gray-700 p-6 hover:border-gray-600 transition-all duration-200 hover:shadow-lg">
+    <div className="bg-gray-800 relative rounded-lg border border-gray-700 p-6 hover:border-gray-600 transition-all duration-200 hover:shadow-lg">
       {/* Header */}
       <div className="flex items-start justify-between mb-4">
         <div className="flex-1">
@@ -169,6 +172,17 @@ const CampaignCard = ({ campaign, isOwner = false }) => {
           </div>
         </div>
       )}
+      {
+        isOwner && (
+          <button
+            onClick={() => generateAISummary(campaign)}
+            className="mt-4 w-full bg-blue-600 hover:bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg transition-colors"
+            title="Generate AI SUMMARY"
+          >
+            Generate AI Summary
+          </button>
+        )
+      }
     </div>
   );
 };
